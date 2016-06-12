@@ -13,7 +13,7 @@ var model = (function() {								// Declare modal object
 
 	return {											// Add code to modal
 		center: function() {							// Define center() method
-			// Calculate distance form top and left of window to center the modal
+			// Calculate distance from top and left of window to center the modal
 			var top = Math.max($window.height() - $modal.outerHeight(), 0) / 2;
 			var left = Math.max($window.width() - $modal.outerWidth(), 0) / 2;
 			$modal.css({								// Set CSS for the modal
@@ -24,11 +24,19 @@ var model = (function() {								// Declare modal object
 		open: function(settings)	{					// Define open() method
 			$content.empty().append(settings.content)	// Set new content of modal
 
-			$modal.css({})
+			$modal.css({								// Set modal dimensions
+				width: settings.width || 'auto',		// Set width
+				height: settings.height || 'auto'		// Set height
+			}).appendTo('body');						// Add it to the page
 
+			modal.center();								// Call center() method
+			$(window).on('resize', modal.center);		// Call it if window resized
+		},
+		close: function() {								// Define close() method
+			$content.empty();							// Remove content from modal
+			$modal.detach();							// Remove modal from page
+			$(window).off('resize', modal.center);		// Remove event handler
 		}
+	};
+}());
 
-	}
-
-
-})
