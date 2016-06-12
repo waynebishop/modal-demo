@@ -2,7 +2,7 @@ var model = (function() {								// Declare modal object
 	var $window = $(window);
 	var $modal = $('<div class="modal"/>');				// Create markup for modal
 	var $content = $('<div class="modal-content"/>');
-	var $close= $('<button role="button" class="modal-close">close</button>');
+	var $close = $('<button role="button" class="modal-close">close</button>');
 
 	$modal.append($content, $close);					// Add close button to modal
 
@@ -19,10 +19,10 @@ var model = (function() {								// Declare modal object
 			$modal.css({								// Set CSS for the modal
 				top: top + $window.scrollTop(),			// Center vertically
 				left: left + $window.scrollLeft()		// Center horizontally
-			})
+			});
 		},
 		open: function(settings)	{					// Define open() method
-			$content.empty().append(settings.content)	// Set new content of modal
+			$content.empty().append(settings.content);	// Set new content of modal
 
 			$modal.css({								// Set modal dimensions
 				width: settings.width || 'auto',		// Set width
